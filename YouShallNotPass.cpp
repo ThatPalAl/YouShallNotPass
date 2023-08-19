@@ -53,25 +53,18 @@ int main() {
      * let the program work efficiently, user should use Name category with a uppercase letter at the beginning.
      * If there is a will to connect more words as a input for one of the 4 data types, user should connect them so that
      * the wouldn't be separated from each other.
-     *
-     * Encrypting and decrypting is not at a stage that the development team wanted it to be, its able to encrypt and
-     * decrypt the file, using the constant int variable declared at the beginning, the file is being decrypted,
-     * every time someone exits the program (by using the NO answer after being questioned, whether the user wants
-     * to continue), the file being encrypted when entering the program and all the encrypted data will be transferred
-     * to the .txt file that is just temporarily for use. After finishing the program, by choosing no more operations
-     * to be done- the .txt file will be override with no text and the process of getting the new information from our
-     * file will need to be done from the start.
+
      */
     bool main_condition = true;
 /**
- * the main path is leading to the hasla1 file without extension, its supposed to contain useless encrypted data,
+ * the main path is leading to the pass.txt file without extension, its supposed to contain useless encrypted data,
  * after passing it as an arugment of the encryptPasswords function, it will take the main path as a instream and
  * shift the information inside by 26486 bits and then put this information into ofstream that sends it to same file
  * but with a .txt extensions, so its a different file.
  * Path already declared here:
  */
 
-    string myFilePath = "/Users/aorgan/Documents/PJATK/Sem3/PJC/hasla1.txt";
+    string myFilePath = "/Users/aorgan/CLionProjects/PasswordManager_CPP/Main/Pass.txt";
 //    encryptPasswords(myFilePath);
     ifstream myFile(myFilePath);
 
@@ -136,128 +129,128 @@ int main() {
 
         while (main_condition) {
             vector<category> categories;
-             printMenu();
+            printMenu();
 
-                int choice;
-                cin >> choice;
-                switch (choice) {
-                    /**
-                     * Search by password- which is revoked by entering the 1 number as a 1st choice from the main menu,
-                     * is letting the user to find and return any results for 1. the name he provides, 2. login he
-                     * provides or 3. Category he provides. Every occurrence in the .txt file will be returned so that
-                     * the user can find the lost password if he's got a name of the password, has a login or
-                     * remembers the category.
-                     */
-                    case 1: {
-                        //search for a password
-                        cout << "Search for a password by: \n 1.Name \n 2.Login \n 3.Category \n";
-                        int search_choice;
-                        cin >> search_choice;
-                        if (search_choice == 1) {
-                            cout << "Searching by name of the password, one result for each name." << endl;
-                            string searchByName;
-                            cin >> searchByName;
-                            int counter = 0;
-                            for (int i = 0; i < passwords_in_vector.size(); i++) {
-                                if (searchByName == passwords_in_vector[i][0]) {
-                                    counter++;
-                                    cout << counter << ". ";
-                                    cout << "Password for " + searchByName + " is: \n";
-                                    cout << passwords_in_vector[i][1] << endl;
-                                    cout << "Enter it to login to your account." << endl;
-                                }
+            int choice;
+            cin >> choice;
+            switch (choice) {
+                /**
+                 * Search by password- which is revoked by entering the 1 number as a 1st choice from the main menu,
+                 * is letting the user to find and return any results for 1. the name he provides, 2. login he
+                 * provides or 3. Category he provides. Every occurrence in the .txt file will be returned so that
+                 * the user can find the lost password if he's got a name of the password, has a login or
+                 * remembers the category.
+                 */
+                case 1: {
+                    //search for a password
+                    cout << "Search for a password by: \n 1.Name \n 2.Login \n 3.Category \n";
+                    int search_choice;
+                    cin >> search_choice;
+                    if (search_choice == 1) {
+                        cout << "Searching by name of the password, one result for each name." << endl;
+                        string searchByName;
+                        cin >> searchByName;
+                        int counter = 0;
+                        for (int i = 0; i < passwords_in_vector.size(); i++) {
+                            if (searchByName == passwords_in_vector[i][0]) {
+                                counter++;
+                                cout << counter << ". ";
+                                cout << "Password for " + searchByName + " is: \n";
+                                cout << passwords_in_vector[i][1] << endl;
+                                cout << "Enter it to login to your account." << endl;
                             }
-
-                        } else if (search_choice == 2) {
-                            cout << "Searching by login, there might be multiple results, providing you with";
-                            cout << "name and category also" << endl;
-                            string searchByLogin;
-                            cin >> searchByLogin;
-                            int counter = 0;
-                            for (int i = 0; i < passwords_in_vector.size(); i++) {
-                                if (searchByLogin == passwords_in_vector[i][2]) {
-                                    counter++;
-                                    cout << counter << ". ";
-                                    cout << "Name: " << passwords_in_vector[i][0];
-                                    cout << ", Category: " << passwords_in_vector[i][3];
-                                    cout << " and the Password/Passwords for is: \n";
-                                    cout << passwords_in_vector[i][1] << endl;
-                                }
-                            }
-                        } else if (search_choice == 3) {
-                            cout << "Searching by category, there might be multiple results, providing you with all";
-                            cout << " matching results for Category";
-                            string searchByCategory;
-                            cin >> searchByCategory;
-                            int counter = 0;
-                            for (auto &i: passwords_in_vector) {
-                                if (searchByCategory == i[3]) {
-                                    counter++;
-                                    cout << counter << ". ";
-                                    cout << "Name: " << i[0];
-                                    cout << ", Login: " << i[2];
-                                    cout << "and the Password/Passwords for is: \n";
-                                    cout << i[1] << endl;
-                                }
-                            }
-                        } else {
-                            errorMessage();
                         }
-                        break;
+
+                    } else if (search_choice == 2) {
+                        cout << "Searching by login, there might be multiple results, providing you with";
+                        cout << "name and category also" << endl;
+                        string searchByLogin;
+                        cin >> searchByLogin;
+                        int counter = 0;
+                        for (int i = 0; i < passwords_in_vector.size(); i++) {
+                            if (searchByLogin == passwords_in_vector[i][2]) {
+                                counter++;
+                                cout << counter << ". ";
+                                cout << "Name: " << passwords_in_vector[i][0];
+                                cout << ", Category: " << passwords_in_vector[i][3];
+                                cout << " and the Password/Passwords for is: \n";
+                                cout << passwords_in_vector[i][1] << endl;
+                            }
+                        }
+                    } else if (search_choice == 3) {
+                        cout << "Searching by category, there might be multiple results, providing you with all";
+                        cout << " matching results for Category";
+                        string searchByCategory;
+                        cin >> searchByCategory;
+                        int counter = 0;
+                        for (auto &i: passwords_in_vector) {
+                            if (searchByCategory == i[3]) {
+                                counter++;
+                                cout << counter << ". ";
+                                cout << "Name: " << i[0];
+                                cout << ", Login: " << i[2];
+                                cout << "and the Password/Passwords for is: \n";
+                                cout << i[1] << endl;
+                            }
+                        }
+                    } else {
+                        errorMessage();
                     }
+                    break;
+                }
                     /**
                      * Case 2 is adding a password, after providing the data (Name, password, login, and choosing a
                      * category), these data will be send straight to the .txt file after restarting the app, user
                      * will always be able to get back to this data.
                      */
-                    case 2: {
-                        string entry_name;
-                        string entry_password;
-                        string entry_login;
-                        string entry_category;
+                case 2: {
+                    string entry_name;
+                    string entry_password;
+                    string entry_login;
+                    string entry_category;
 
-                        cout << "Add a new password \n";
+                    cout << "Add a new password \n";
 
-                        cout << "Enter the name of the password(Twitter, Youtube, Mailwp etc.): ";
-                        cin >> entry_name;
+                    cout << "Enter the name of the password(Twitter, Youtube, Mailwp etc.): ";
+                    cin >> entry_name;
 
-                        cout << "\nEnter the password itself: ";
-                        cin >> entry_password;
+                    cout << "\nEnter the password itself: ";
+                    cin >> entry_password;
 
-                        cout << "\nEnter the login of the password: ";
-                        cin >> entry_login;
+                    cout << "\nEnter the login of the password: ";
+                    cin >> entry_login;
 
-                        cout << "\nChoose which category you want to assign to this password." << endl;
-                        int index_add_category;
-                        string choice_of_category;
-                        for (int i = 0; i < categories.size(); i++) {
-                            if (categories.at(i).name != "-") {
-                                cout << i + 1 << ". " << categories.at(i).name << endl;
-                            }
+                    cout << "\nChoose which category you want to assign to this password." << endl;
+                    int index_add_category;
+                    string choice_of_category;
+                    for (int i = 0; i < categories.size(); i++) {
+                        if (categories.at(i).name != "-") {
+                            cout << i + 1 << ". " << categories.at(i).name << endl;
                         }
-                        cout << "Here are all available categories - enter the number to choose one of them." << endl;
-
-                        while (true) {
-                            cout << "Enter the number (1-20) to choose the category" << endl;
-                            cin >> index_add_category;
-                            if (index_add_category >= 1 && index_add_category <= 20) {
-                                break;
-                            } else {
-                                errorMessage();
-                            }
-                        }
-
-                        std::ofstream streamOut(myFilePath, std::ios::app);
-
-                        std::string s1 = entry_name;
-                        std::string s2 = entry_password;
-                        std::string s3 = entry_login;
-                        std::string s4 = categories.at(index_add_category - 1).name;
-
-
-                        streamOut << "\n" << s1 << " " << s2 << " " << s3 << " " << s4;
-                        break;
                     }
+                    cout << "Here are all available categories - enter the number to choose one of them." << endl;
+
+                    while (true) {
+                        cout << "Enter the number (1-20) to choose the category" << endl;
+                        cin >> index_add_category;
+                        if (index_add_category >= 1 && index_add_category <= 20) {
+                            break;
+                        } else {
+                            errorMessage();
+                        }
+                    }
+
+                    std::ofstream streamOut(myFilePath, std::ios::app);
+
+                    std::string s1 = entry_name;
+                    std::string s2 = entry_password;
+                    std::string s3 = entry_login;
+                    std::string s4 = categories.at(index_add_category - 1).name;
+
+
+                    streamOut << "\n" << s1 << " " << s2 << " " << s3 << " " << s4;
+                    break;
+                }
                     /**
                      * Editing password is a functionality that allows user to pick from all the passwords that are
                      * printed out, the one that he wants to change. Ideally and in this scenario it is done by
@@ -269,149 +262,149 @@ int main() {
                      * with completing all these points, adding a password will be completed and it will be updated
                      * in the txt file after the program is run again.
                      */
-                    case 3: {
-                        string password_to_change;
-                        int index_password_to_change;
-                        string new_password_edit;
+                case 3: {
+                    string password_to_change;
+                    int index_password_to_change;
+                    string new_password_edit;
 
-                        printPasswordVector(passwords_in_vector);
-                        cout << "Which password do you want to change? Enter the name:\n";
-                        cin >> password_to_change;
+                    printPasswordVector(passwords_in_vector);
+                    cout << "Which password do you want to change? Enter the name:\n";
+                    cin >> password_to_change;
 
-                        for(int i = 0; i < passwords_in_vector.size(); i++){
-                            if(passwords_in_vector[i][0] == password_to_change){
-                                size_t size = passwords_in_vector.size();
-                                index_password_to_change = i;
-                                bool conditions = true;
-                                cout << "Enter the new password for " << password_to_change << " : \n";
-                                while(conditions){
-                                    cin >> new_password_edit;
-                                    if (checkNumberOccurrence(new_password_edit)
-                                            && checkPasswordLength(new_password_edit)
-                                            && checkUppercaseOccurrence(new_password_edit))
-                                    {
-                                            conditions = false;
-                                    }
-                                    else {
-                                        cout << "Wrong password, please try again, remember that the password";
-                                        cout << " you provide, must: " << endl;
-                                        cout << "-Have at least 8 characters" << endl;
-                                        cout << "-Have at least 1 upper letter" << endl;
-                                        cout << "-Have at least 1 number" << endl;
-                                    }
-                                }
-                                passwords_in_vector[i][1] = new_password_edit;
-                                break;
-                            }
-                            else if(i == passwords_in_vector.size()){
-                                cout << "No such Name, try that again" << endl;
-                                break;
-                            }
-                        }
-                        std::ofstream streamOut(myFilePath, std::ios::out);
-                        for(int i = 0; i < passwords_in_vector.size(); i++) {
-                           streamOut << passwords_in_vector[i][0] << " "
-                                     << passwords_in_vector[i][1] << " "
-                                     << passwords_in_vector[i][2] << " "
-                                     << passwords_in_vector[i][3] << " \n";
-                        }
-                        break;
-                    }
-                    case 4: {
-                        /**
-                         * Delete password is a functionality that allows user to choose what will be the filter to
-                         * delete the passwords by. If its the Name - then one specific password wil be deleted (as
-                         * every password should have a unique name). If the password will be deleted by login -
-                         * this functionality should delete all the passwords with this login used. Same logic applies
-                         * to deleting the passwords by Category, every row within the .txt file, which contains
-                         * such a Category or login should be deleted and replaced with the last row so that,
-                         * the password file will not have any blank rows. If user chooses to delete the last password,
-                         * which is on the last row, it should be replaced by "" empty string so that no changes are
-                         * applied to the .txt apart from this row.
-                         */
-                        int delete_by_choice;
-                        bool number_condition = true;
-                        bool delete_number_value;
-
-                        printPasswordVector(passwords_in_vector);
-
-                        cout << "Select the password you want to delete." << endl;
-                        while(number_condition){
-                            cout << "Delete by 1. Name 2. Login  3. Category " << endl;
-                            cin >> delete_by_choice;
-                            if (delete_by_choice < 1 || delete_by_choice > 3) {
-                                errorMessage();
-                            }
-                            else{
-                                number_condition = false;
-                                continue;
-                            }
-                        }
-                        if(delete_by_choice == 1){
+                    for(int i = 0; i < passwords_in_vector.size(); i++){
+                        if(passwords_in_vector[i][0] == password_to_change){
                             size_t size = passwords_in_vector.size();
-                            int counter = 1;
-                            string delete_password_by_name;
-                            cout << "Enter the NAME of the password you want to delete: " << endl;
-                            cin >> delete_password_by_name;
-                            for(int i = 0; i < passwords_in_vector.size(); i++){
+                            index_password_to_change = i;
+                            bool conditions = true;
+                            cout << "Enter the new password for " << password_to_change << " : \n";
+                            while(conditions){
+                                cin >> new_password_edit;
+                                if (checkNumberOccurrence(new_password_edit)
+                                    && checkPasswordLength(new_password_edit)
+                                    && checkUppercaseOccurrence(new_password_edit))
+                                {
+                                    conditions = false;
+                                }
+                                else {
+                                    cout << "Wrong password, please try again, remember that the password";
+                                    cout << " you provide, must: " << endl;
+                                    cout << "-Have at least 8 characters" << endl;
+                                    cout << "-Have at least 1 upper letter" << endl;
+                                    cout << "-Have at least 1 number" << endl;
+                                }
+                            }
+                            passwords_in_vector[i][1] = new_password_edit;
+                            break;
+                        }
+                        else if(i == passwords_in_vector.size()){
+                            cout << "No such Name, try that again" << endl;
+                            break;
+                        }
+                    }
+                    std::ofstream streamOut(myFilePath, std::ios::out);
+                    for(int i = 0; i < passwords_in_vector.size(); i++) {
+                        streamOut << passwords_in_vector[i][0] << " "
+                                  << passwords_in_vector[i][1] << " "
+                                  << passwords_in_vector[i][2] << " "
+                                  << passwords_in_vector[i][3] << " \n";
+                    }
+                    break;
+                }
+                case 4: {
+                    /**
+                     * Delete password is a functionality that allows user to choose what will be the filter to
+                     * delete the passwords by. If its the Name - then one specific password wil be deleted (as
+                     * every password should have a unique name). If the password will be deleted by login -
+                     * this functionality should delete all the passwords with this login used. Same logic applies
+                     * to deleting the passwords by Category, every row within the .txt file, which contains
+                     * such a Category or login should be deleted and replaced with the last row so that,
+                     * the password file will not have any blank rows. If user chooses to delete the last password,
+                     * which is on the last row, it should be replaced by "" empty string so that no changes are
+                     * applied to the .txt apart from this row.
+                     */
+                    int delete_by_choice;
+                    bool number_condition = true;
+                    bool delete_number_value;
+
+                    printPasswordVector(passwords_in_vector);
+
+                    cout << "Select the password you want to delete." << endl;
+                    while(number_condition){
+                        cout << "Delete by 1. Name 2. Login  3. Category " << endl;
+                        cin >> delete_by_choice;
+                        if (delete_by_choice < 1 || delete_by_choice > 3) {
+                            errorMessage();
+                        }
+                        else{
+                            number_condition = false;
+                            continue;
+                        }
+                    }
+                    if(delete_by_choice == 1){
+                        size_t size = passwords_in_vector.size();
+                        int counter = 1;
+                        string delete_password_by_name;
+                        cout << "Enter the NAME of the password you want to delete: " << endl;
+                        cin >> delete_password_by_name;
+                        for(int i = 0; i < passwords_in_vector.size(); i++){
+                            if(i == size - 1){
+                                passwords_in_vector[i][0] = "";
+                                passwords_in_vector[i][1] = "";
+                                passwords_in_vector[i][2] = "";
+                                passwords_in_vector[i][3] = "";
+                                break; // just one password at the end
+                            }
+                            if(delete_password_by_name == passwords_in_vector[i][0]){
+                                passwords_in_vector[i][0] = passwords_in_vector[size - counter][0];
+                                passwords_in_vector[i][1] = passwords_in_vector[size - counter][1];
+                                passwords_in_vector[i][2] = passwords_in_vector[size - counter][2];
+                                passwords_in_vector[i][3] = passwords_in_vector[size - counter][3];
+
+                                vectorToFile(passwords_in_vector, myFilePath);
+                                counter++; //if multiple passwords are supposed to be deleted, we have to replace it
+                                //with the last position, then the one before etc.
+                            }
+                        }
+                        cout << "All passwords with name: " << delete_password_by_name << " have been deleted\n";
+                    }
+                    else if(delete_by_choice == 2){
+                        size_t size = passwords_in_vector.size();
+                        int counter = 1;
+                        string delete_password_by_login;
+                        cout << "Enter the login of the password/passwords you want to delete, be careful! This";
+                        cout << " operation might delete MULTIPLE passwords" << endl;
+                        cin >> delete_password_by_login;
+                        for(int i = 0; i < passwords_in_vector.size(); i++){
+                            if(delete_password_by_login == passwords_in_vector[i][2]){
                                 if(i == size - 1){
                                     passwords_in_vector[i][0] = "";
                                     passwords_in_vector[i][1] = "";
                                     passwords_in_vector[i][2] = "";
                                     passwords_in_vector[i][3] = "";
-                                    break; // just one password at the end
+                                    break;
                                 }
-                                if(delete_password_by_name == passwords_in_vector[i][0]){
+                                else {
                                     passwords_in_vector[i][0] = passwords_in_vector[size - counter][0];
                                     passwords_in_vector[i][1] = passwords_in_vector[size - counter][1];
                                     passwords_in_vector[i][2] = passwords_in_vector[size - counter][2];
                                     passwords_in_vector[i][3] = passwords_in_vector[size - counter][3];
 
                                     vectorToFile(passwords_in_vector, myFilePath);
-                                    counter++; //if multiple passwords are supposed to be deleted, we have to replace it
-                                    //with the last position, then the one before etc.
+                                    counter++;
                                 }
                             }
-                            cout << "All passwords with name: " << delete_password_by_name << " have been deleted\n";
                         }
-                        else if(delete_by_choice == 2){
-                            size_t size = passwords_in_vector.size();
-                            int counter = 1;
-                            string delete_password_by_login;
-                            cout << "Enter the login of the password/passwords you want to delete, be careful! This";
-                            cout << " operation might delete MULTIPLE passwords" << endl;
-                            cin >> delete_password_by_login;
-                            for(int i = 0; i < passwords_in_vector.size(); i++){
-                                if(delete_password_by_login == passwords_in_vector[i][2]){
-                                    if(i == size - 1){
-                                        passwords_in_vector[i][0] = "";
-                                        passwords_in_vector[i][1] = "";
-                                        passwords_in_vector[i][2] = "";
-                                        passwords_in_vector[i][3] = "";
-                                        break;
-                                    }
-                                    else {
-                                        passwords_in_vector[i][0] = passwords_in_vector[size - counter][0];
-                                        passwords_in_vector[i][1] = passwords_in_vector[size - counter][1];
-                                        passwords_in_vector[i][2] = passwords_in_vector[size - counter][2];
-                                        passwords_in_vector[i][3] = passwords_in_vector[size - counter][3];
 
-                                        vectorToFile(passwords_in_vector, myFilePath);
-                                        counter++;
-                                    }
-                                }
-                            }
-
-                        }
-                        else if(delete_by_choice == 3){
-                            size_t size = passwords_in_vector.size();
-                            int counter = 1;
-                            string delete_password_by_category;
-                            cout << "Enter the category by which you want to delete password/passwords, ";
-                            cout << "be careful, this operation might delete MULTIPLE passwords." << endl;
-                            cin >> delete_password_by_category;
-                            for(int i = 0; i < passwords_in_vector.size(); i++){
-                                if(delete_password_by_category == passwords_in_vector[i][3]){
+                    }
+                    else if(delete_by_choice == 3){
+                        size_t size = passwords_in_vector.size();
+                        int counter = 1;
+                        string delete_password_by_category;
+                        cout << "Enter the category by which you want to delete password/passwords, ";
+                        cout << "be careful, this operation might delete MULTIPLE passwords." << endl;
+                        cin >> delete_password_by_category;
+                        for(int i = 0; i < passwords_in_vector.size(); i++){
+                            if(delete_password_by_category == passwords_in_vector[i][3]){
                                 if(size - 1 == i){
                                     passwords_in_vector[i][0] = "";
                                     passwords_in_vector[i][1] = "";
@@ -427,78 +420,78 @@ int main() {
 
                                     vectorToFile(passwords_in_vector, myFilePath);
                                     counter++;
-                                    }
                                 }
                             }
                         }
-                        break;
                     }
-                    case 5: {
-                        /**
-                         * Categories are located in a different vector, so that the user can choose which one will be
-                         * assigned to his password, he shouldn't enter them manually, there are 10 default categories,
-                         * stored in the vector, user can add and delete categories but there is a limit of 20.
-                         *
-                         */
-                        int first_blank_index;
-                        string new_category;
-                        for (int i = 0; i < 20; i++) {
-                            if (categories.at(i).name == "-") {
-                                first_blank_index = i;
-                                cout << "You have " << first_blank_index - 1
-                                     << " categories used, remember you have a limit of 20";
-                                cout << "\n In order to add a new category provide the name here: " << endl;
-                                cin >> new_category;
-                                categories.at(first_blank_index).name = new_category;
-                                break;
-                            } else {
-                                cout<< "Sorry, there is no more space, to add a new category, delete one first";
-                                cout << endl;
-                            }
-                        }
-                    }
-                    case 6: {
-                        int category_to_delete;
-                        for (int i = 0; i < categories.size(); i++) {
-                            cout << i + 1 << ". " << categories.at(i).name << " " << endl;
-                        }
-                        cout << "Enter the number (1 - 20) of the category you want to delete: ";
-                        cin >> category_to_delete;
-                        if (category_to_delete > 20 || category_to_delete < 1) {
-                            cout << "Wrong number, try that agian";
+                    break;
+                }
+                case 5: {
+                    /**
+                     * Categories are located in a different vector, so that the user can choose which one will be
+                     * assigned to his password, he shouldn't enter them manually, there are 10 default categories,
+                     * stored in the vector, user can add and delete categories but there is a limit of 20.
+                     *
+                     */
+                    int first_blank_index;
+                    string new_category;
+                    for (int i = 0; i < 20; i++) {
+                        if (categories.at(i).name == "-") {
+                            first_blank_index = i;
+                            cout << "You have " << first_blank_index - 1
+                                 << " categories used, remember you have a limit of 20";
+                            cout << "\n In order to add a new category provide the name here: " << endl;
+                            cin >> new_category;
+                            categories.at(first_blank_index).name = new_category;
+                            break;
                         } else {
-                            categories.at(category_to_delete - 1).name = "-";
+                            cout<< "Sorry, there is no more space, to add a new category, delete one first";
+                            cout << endl;
                         }
-                        break;
                     }
+                }
+                case 6: {
+                    int category_to_delete;
+                    for (int i = 0; i < categories.size(); i++) {
+                        cout << i + 1 << ". " << categories.at(i).name << " " << endl;
+                    }
+                    cout << "Enter the number (1 - 20) of the category you want to delete: ";
+                    cin >> category_to_delete;
+                    if (category_to_delete > 20 || category_to_delete < 1) {
+                        cout << "Wrong number, try that agian";
+                    } else {
+                        categories.at(category_to_delete - 1).name = "-";
+                    }
+                    break;
+                }
                     /**
                      This functionality allows to sort all the password in the txt file by Name in alphabetical order.
 
                      */
-                    case 7: {
-                        sortPasswordByName2(passwords_in_vector);
-                        printPasswordVector(passwords_in_vector);
-                        cout << " ----------" << endl;
-                        std::ofstream streamOut(myFilePath, std::ios::out);
-                        for (int i = 0; i < passwords_in_vector.size(); i++) {
-                            streamOut << passwords_in_vector[i][0] << " "
-                                      << passwords_in_vector[i][1] << " "
-                                      << passwords_in_vector[i][2] << " "
-                                      << passwords_in_vector[i][3] << " \n";
-                        }
-                        break;
+                case 7: {
+                    sortPasswordByName2(passwords_in_vector);
+                    printPasswordVector(passwords_in_vector);
+                    cout << " ----------" << endl;
+                    std::ofstream streamOut(myFilePath, std::ios::out);
+                    for (int i = 0; i < passwords_in_vector.size(); i++) {
+                        streamOut << passwords_in_vector[i][0] << " "
+                                  << passwords_in_vector[i][1] << " "
+                                  << passwords_in_vector[i][2] << " "
+                                  << passwords_in_vector[i][3] << " \n";
                     }
-                    default: {
-                        errorMessage();
-                        break;
-                    }
+                    break;
                 }
-                /**
-                 * This code at the end of the while loop, allows user to make a decision after running one of the
-                 * fucntionalities above, the question is whether he want to continue with any action in the
-                 * password manager, there is a value of 1 which will be understandable as a will to continue with the
-                 * program, a value of 2 wchich will be exiting the program, any other output will not aprooved.
-                 */
+                default: {
+                    errorMessage();
+                    break;
+                }
+            }
+            /**
+             * This code at the end of the while loop, allows user to make a decision after running one of the
+             * fucntionalities above, the question is whether he want to continue with any action in the
+             * password manager, there is a value of 1 which will be understandable as a will to continue with the
+             * program, a value of 2 wchich will be exiting the program, any other output will not aprooved.
+             */
             int main_condition_answer;
             bool sub_condition_answer = true;
             while(sub_condition_answer){
@@ -564,6 +557,15 @@ void encryptPasswords(string &my_file) {
     output_file.close();
 }
 
+/*
+* Encrypting and decrypting is not at a stage that the development team wanted it to be, its able to encrypt and
+* decrypt the file, using the constant int variable declared at the beginning, the file is being decrypted,
+        * every time someone exits the program (by using the NO answer after being questioned, whether the user wants
+* to continue), the file being encrypted when entering the program and all the encrypted data will be transferred
+        * to the .txt file that is just temporarily for use. After finishing the program, by choosing no more operations
+* to be done- the .txt file will be override with no text and the process of getting the new information from our
+        * file will need to be done from the start.
+*/
 void decryptPasswords(string &my_file) {
     ifstream input_file(my_file);
     ofstream output_file(my_file.substr(0, my_file.length() - 4));
@@ -630,7 +632,7 @@ void vectorToFile(vector<vector<string> > &password_vector, string myFilePath){
                   << password_vector[i][1] << " "
                   << password_vector[i][2] << " "
                   << password_vector[i][3] << " \n";
-        }
+    }
 }
 /**
  * Three function below are supposed to simplify the code in the edit or add password functionalities. They are
